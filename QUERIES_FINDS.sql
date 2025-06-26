@@ -104,7 +104,7 @@ LIMIT 1;
 
 --Q13. List an order where delivered late? (and how many days late orders)--
 SELECT o.order_id, c.customer_id, c.name, o.order_date, d.delivery_status,
- d.delivery_date - o.order_date AS days_late,
+ d.delivery_date - o.order_date AS days_late
 FROM orders o
 JOIN deliveries d ON o.order_id = d.order_id
 JOIN customers c ON o.customer_id=c.customer_id
@@ -131,7 +131,7 @@ WHERE d.delivery_status = 'Delivered'
 SELECT c.customer_id, c.name,
 COUNT(o.order_id) AS total_orders
 FROM customers c
-JOIN orders o ON c.customer_id = o.order_id
+JOIN orders o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id, c.name
 HAVING COUNT(o.order_id) > 2;
 
